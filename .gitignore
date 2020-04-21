@@ -1,2 +1,6 @@
 # Project exclude paths
 /build/
+/.mypy_cache
+/.idea
+/.pytest_cache
+/FileSort.egg-info
