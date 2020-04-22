@@ -9,3 +9,8 @@ Then run
 pipenv --python=/path/to/python3.6 --site-packages
 pipenv install --dev
 ```
+
+##Testing
+```
+pipenv run python -m pytest
+```

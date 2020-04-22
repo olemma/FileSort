@@ -24,27 +24,30 @@ log = logging.getLogger(__name__)
 class Gtk3UI(Gtk3PluginBase):
     def enable(self):
         self.builder = Gtk.Builder()
-        self.builder.add_from_file(get_resource('config.ui'))
+        self.builder.add_from_file(get_resource("config.ui"))
 
-        component.get('Preferences').add_page(
-            'FileSort', self.builder.get_object('prefs_box'))
-        component.get('PluginManager').register_hook(
-            'on_apply_prefs', self.on_apply_prefs)
-        component.get('PluginManager').register_hook(
-            'on_show_prefs', self.on_show_prefs)
+        component.get("Preferences").add_page(
+            "FileSort", self.builder.get_object("prefs_box")
+        )
+        component.get("PluginManager").register_hook(
+            "on_apply_prefs", self.on_apply_prefs
+        )
+        component.get("PluginManager").register_hook(
+            "on_show_prefs", self.on_show_prefs
+        )
 
     def disable(self):
-        component.get('Preferences').remove_page('FileSort')
-        component.get('PluginManager').deregister_hook(
-            'on_apply_prefs', self.on_apply_prefs)
-        component.get('PluginManager').deregister_hook(
-            'on_show_prefs', self.on_show_prefs)
+        component.get("Preferences").remove_page("FileSort")
+        component.get("PluginManager").deregister_hook(
+            "on_apply_prefs", self.on_apply_prefs
+        )
+        component.get("PluginManager").deregister_hook(
+            "on_show_prefs", self.on_show_prefs
+        )
 
     def on_apply_prefs(self):
-        log.debug('applying prefs for FileSort')
-        config = {
-            'test': self.builder.get_object('txt_test').get_text()
-        }
+        log.debug("applying prefs for FileSort")
+        config = {"test": self.builder.get_object("txt_test").get_text()}
         client.filesort.set_config(config)
 
     def on_show_prefs(self):
@@ -52,4 +55,4 @@ class Gtk3UI(Gtk3PluginBase):
 
     def cb_get_config(self, config):
         """callback for on show_prefs"""
-        self.builder.get_object('txt_test').set_text(config['test'])
+        self.builder.get_object("txt_test").set_text(config["test"])

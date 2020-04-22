@@ -19,7 +19,7 @@ log = logging.getLogger(__name__)
 
 class WebUI(WebPluginBase):
 
-    scripts = [get_resource('filesort.js')]
+    scripts = [get_resource("filesort.js")]
 
     def enable(self):
         pass
